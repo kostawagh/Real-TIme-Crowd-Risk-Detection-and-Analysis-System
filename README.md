@@ -1,133 +1,17 @@
 # Real-Time Crowd Risk Detection and Analysis System
 
-An AI-powered computer vision system for **real-time crowd risk assessment** using person detection, multi-object tracking, spatiotemporal feature extraction, and machine learning.
-
-The system analyzes crowd movement from video feeds and classifies crowd conditions into **Safe**, **Warning**, or **Danger**, providing an interpretable early-warning solution for crowd monitoring applications.
-
----
+An AI-powered crowd monitoring system that uses **YOLOv8**, **multi-object tracking**, and **machine learning** to analyze crowd movement and classify crowd conditions into **Safe**, **Warning**, and **Danger** in real time.
 
 ## Features
 
-- Real-time person detection using **YOLOv8**
-- Multi-object tracking for trajectory analysis
-- Grid-based spatiotemporal crowd feature extraction
-- Machine learning-based crowd risk classification
+- Real-time person detection using YOLOv8
+- Multi-object tracking
+- Grid-based spatiotemporal feature extraction
+- ML-based crowd risk classification
 - Live visualization with risk overlays
-- Support for:
-  - Video files
-  - Laptop webcam
-  - IP/Mobile camera streams
-- Streamlit dashboard for interactive deployment
-- Automatic CSV logging and annotated video generation
-
----
-
-## System Pipeline
-
-```text
-Video Input
-      │
-      ▼
-YOLOv8 Person Detection
-      │
-      ▼
-Multi-Object Tracking
-      │
-      ▼
-Spatiotemporal Feature Extraction
-      │
-      ▼
-Machine Learning Classification
-      │
-      ▼
-Safe / Warning / Danger Prediction
-      │
-      ▼
-Visualization + CSV Logging + Output Video
-```
-
----
-
-## Crowd Features Extracted
-
-The system analyzes crowd behaviour using engineered features rather than relying solely on crowd density.
-
-- Crowd Density
-- Average Velocity
-- Average Acceleration
-- Congestion Index
-- Turbulence
-- Flow Conflict
-- Track Risk Score
-
-These features are computed over a **5×5 spatial grid**, enabling localized risk assessment across the scene.
-
----
-
-## Machine Learning
-
-Several machine learning models were evaluated for crowd risk classification, including:
-
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- Extra Trees
-- Gradient Boosting
-
-After comparison, **Random Forest** was selected for deployment due to its balance of accuracy, recall, robustness, and interpretability.
-
-### Final Model Performance
-
-| Metric | Score |
-|---------|-------|
-| Accuracy | **92.68%** |
-| Precision | **75.84%** |
-| Recall | **89.46%** |
-| F1 Score | **82.09%** |
-
----
-
-## Dashboard
-
-The Streamlit dashboard supports:
-
-- Video upload
-- Live webcam analysis
-- IP camera streaming
-- Real-time risk visualization
-- Live analytics
-- CSV download
-- Annotated output video download
-
----
-
-## Output Files
-
-The system generates multiple outputs during execution.
-
-```
-tracking_<video>.csv
-features_<video>.csv
-analytics_<video>.csv
-risk_<video>.csv
-realtime_ml_<video>.csv
-realtime_ml_<video>.mp4
-```
-
-These outputs provide both numerical analytics and visual evidence of the detected crowd behaviour.
-
----
-
-## Applications
-
-- Smart City Surveillance
-- Railway Stations
-- Religious Gatherings
-- Sports Events
-- Concerts
-- Festivals
-- Public Rallies
-- Crowd Safety Monitoring
+- Supports video files, webcam, and IP camera streams
+- Streamlit dashboard for interactive monitoring
+- CSV logging and annotated video output
 
 ---
 
@@ -144,51 +28,90 @@ These outputs provide both numerical analytics and visual evidence of the detect
 
 ---
 
-## Project Structure
+## Installation
 
-```text
-├── models/
-├── datasets/
-├── realtime/
-├── dashboard/
-├── outputs/
-├── notebooks/
-├── utils/
-├── requirements.txt
-└── README.md
+It is recommended to run this project inside a **Python virtual environment (venv)**.
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-link>
+cd <repository-folder>
 ```
 
-*(Folder names may differ depending on your local project structure.)*
+### 2. Create and activate a virtual environment
+
+**Windows**
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install the required libraries
+
+```bash
+pip install ultralytics opencv-python numpy pandas scikit-learn streamlit matplotlib scipy joblib tqdm filterpy lap supervision
+```
+
+*(If your project includes additional libraries, install those as well or create a `requirements.txt`.)*
 
 ---
 
-## Future Improvements
+## Project Workflow
 
-- Improved performance under heavy occlusion
-- Temporal deep learning models (LSTM/Transformer)
+```text
+Video Input
+    ↓
+YOLOv8 Detection
+    ↓
+Object Tracking
+    ↓
+Feature Extraction
+    ↓
+Machine Learning Prediction
+    ↓
+Safe / Warning / Danger
+    ↓
+Visualization & Logging
+```
+
+---
+
+## Applications
+
+- Smart City Surveillance
+- Railway Stations
+- Religious Gatherings
+- Concerts & Festivals
+- Sports Events
+- Public Crowd Safety
+
+---
+
+## Future Scope
+
+- Better performance in dense crowds
+- Multi-camera support
 - Edge device deployment
-- Multi-camera crowd fusion
-- Automatic alert and notification system
-- Geo-spatial crowd mapping
-
----
-
-## Motivation
-
-Large public gatherings such as festivals, railway stations, sporting events, and religious congregations remain vulnerable to crowd congestion and stampedes. Traditional CCTV systems rely heavily on manual observation, making early detection difficult.
-
-This project aims to transform ordinary surveillance footage into **real-time crowd risk intelligence**, assisting authorities with early warning and improved situational awareness.
+- Automatic alert system
+- Temporal deep learning models
 
 ---
 
 ## Disclaimer
 
-This project is an academic research prototype developed for educational and research purposes. It is intended to assist crowd monitoring and should not be considered a replacement for professional crowd management or emergency response systems.
+This project is an academic research prototype intended for educational and research purposes. It is designed to assist crowd monitoring and early warning, not replace professional crowd management systems.
 
 ---
 
 ## Author
 
 **Kaustubh Wagh**
-
-If you found this project interesting, consider giving it a ⭐ on GitHub.
